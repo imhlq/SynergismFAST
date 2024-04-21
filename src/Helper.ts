@@ -231,8 +231,8 @@ type AutoToolInput =
  */
 export const automaticTools = (input: AutoToolInput, time: number) => {
   const timeMultiplier = input === 'runeSacrifice' || input === 'addOfferings'
-    ? G.globalSpeedFactor
-    : calculateTimeAcceleration().mult * G.globalSpeedFactor
+    ? 1
+    : calculateTimeAcceleration().mult
 
   switch (input) {
     case 'addObtainium': {
@@ -325,8 +325,8 @@ export const automaticTools = (input: AutoToolInput, time: number) => {
       break
     case 'antSacrifice': {
       // Increments real and 'fake' timers. the Real timer is on real life seconds.
-      player.antSacrificeTimer += time * timeMultiplier * G.globalSpeedFactor
-      player.antSacrificeTimerReal += time * G.globalSpeedFactor
+      player.antSacrificeTimer += time * timeMultiplier
+      player.antSacrificeTimerReal += time
 
       // Equal to real time iff "Real Time" option selected in ants tab.
       const antSacrificeTimer = player.autoAntSacrificeMode === 2
